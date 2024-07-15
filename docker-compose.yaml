@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  mysqldb:
+    image: mysql
+    container_name: hotel_registration_mysql
+    volumes:
+      - ./docker/mysqldb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: hotel_password
+      MYSQL_DATABASE: hotel_database
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - '3307:3306'
+    networks:
+      - mysqldb
+  php:
+    container_name: hotel_registration_php
+    build:
+      context: ./docker/php
+    ports:
+      - '9001:9000'
+    restart: always
+    volumes:
+      - .:/var/www/symfony_docker
+    networks:
+      - mysqldb
+      - default
+  nginx:
+    container_name: hotel_registration_nginx
+    image: nginx:stable-alpine
+    ports:
+      - '8080:80'
+      - '8043:443'
+    restart: always
+    volumes:
+      - ./:/var/www/symfony_docker
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+volumes:
+  mysqldb-data:
+networks:
+  mysqldb:
+    driver: bridge
+

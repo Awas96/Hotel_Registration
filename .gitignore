@@ -1,0 +1,18 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+/docker/mysqldb
+###< symfony/framework-bundle ###
+/.idea/dataSources/8717ce4d-dc82-4b15-8715-a243a0d1f5e5/storage_v2/_src_/schema/hotel_database.piut5g.meta
+/.idea/dataSources/8717ce4d-dc82-4b15-8715-a243a0d1f5e5.xml
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/php.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
