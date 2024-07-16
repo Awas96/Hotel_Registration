@@ -6,6 +6,9 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\RegistrationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Context;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RegistrationRepository::class)]
 class Registration
@@ -15,12 +18,17 @@ class Registration
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Context([DateTimeNormalizer::FORMAT_KEY => 'd-m-Y H:i'])]
+    #[Assert\NotBlank]
+    #[Assert\Date]
     private ?\DateTimeInterface $checkIn = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?string $checkOut = null;
-
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Context([DateTimeNormalizer::FORMAT_KEY => 'd-m-Y H:i'])]
+    #[Assert\NotBlank]
+    #[Assert\Date]
+    private ?\DateTimeInterface $checkOut = null;
 
     public function __construct()
     {
@@ -43,12 +51,12 @@ class Registration
         return $this;
     }
 
-    public function getCheckOut(): ?string
+    public function getCheckOut(): ?\DateTimeInterface
     {
         return $this->checkOut;
     }
 
-    public function setCheckOut(string $checkOut): static
+    public function setCheckOut(\DateTimeInterface $checkOut): static
     {
         $this->checkOut = $checkOut;
 

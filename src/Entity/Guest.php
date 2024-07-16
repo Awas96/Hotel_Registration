@@ -11,7 +11,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use newrelic\DistributedTracePayload;
+use Symfony\Component\Serializer\Annotation\Context;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GuestRepository::class)]
 #[ApiResource(
@@ -28,19 +30,29 @@ class Guest
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 100, maxMessage: ' Your name must not exceed :max characters in length.')]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 100, maxMessage: ' Your surname must not exceed :max characters in length.')]
     private ?string $surname = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Context([DateTimeNormalizer::FORMAT_KEY => 'd-m-Y'])]
+    #[Assert\NotBlank]
+    #[Assert\Datetime]
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private array $gender = [];
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^[A-z0-9]{2,3}[0-9]{6}$/', message: "Your passport identification must be a valid EU passport")]
     private ?string $passportId = null;
 
     #[ORM\Column(length: 255)]
@@ -53,7 +65,7 @@ class Guest
     /**
      * @var Collection<int, Registration>
      */
-    #[ORM\ManyToMany(targetEntity: Registration::class)]
+    #[ORM\ManyToMany(targetEntity: Registration::class, cascade: ['persist', 'remove'])]
     private Collection $registration;
 
     public function __construct()
