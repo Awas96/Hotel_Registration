@@ -28,8 +28,6 @@ use Symfony\Component\Validator\Constraints\PasswordStrength;
     operations: [
         new Get(),
         new Post(validationContext: ['groups' => ['Default', 'user:create']], processor: UserPasswordHasher::class),
-        new Put(processor: UserPasswordHasher::class),
-        new Patch(processor: UserPasswordHasher::class),
         new Delete(),
     ],
     normalizationContext: ['groups' => ['user:read']],
