@@ -29,11 +29,11 @@ class CreateMultipleGuestsController extends AbstractController
     public function __invoke(Request $request,GuestsValidationHandler $guestsValidationHandler): JsonResponse
     {
         $dataCollection = json_decode($request->getContent());
-        $response = $guestsValidationHandler->handle($dataCollection);
-        dump(json_decode($response));
+        $results = $guestsValidationHandler->handle($dataCollection);
 
+        $response = ["errors" => json_decode($results)];
 
-        return $this->json("done");
+        return $this->json($response, Response::HTTP_OK);
     }
 
 

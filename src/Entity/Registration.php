@@ -13,7 +13,6 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RegistrationRepository::class)]
-#[ApiResource()]
 class Registration
 {
     #[ORM\Id]

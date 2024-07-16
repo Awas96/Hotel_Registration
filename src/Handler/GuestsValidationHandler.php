@@ -50,7 +50,7 @@ class GuestsValidationHandler
                 //Verify the data.
                 $errors =  $this->validator->validate($guest);
                 foreach ($errors as $error) {
-                    $errorCollector[] = [$error->getPropertyPath(), $error->getMessage(), $error->getInvalidValue()];
+                    $errorCollector[] = (object)[$error->getPropertyPath(), $error->getMessage(), $error->getInvalidValue()];
                 }
 
                 //Persist guest in database if no errors are present.

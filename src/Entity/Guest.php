@@ -21,14 +21,64 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: GuestRepository::class)]
 #[ApiResource(
     operations: [
-        new Get(),
-        new Post(),
         new Post(
             uriTemplate: '/guests/multiple',
             controller: CreateMultipleGuestsController::class,
             openapi: new Model\Operation(
                 summary: 'Create a list of guests',
-                description: 'Creates at once multiple guest entries, in a batch'
+                description: 'Creates at once multiple guest entries, in a batch',
+                requestBody: new Model\RequestBody(
+                    content: new \ArrayObject([
+                        'application/json' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'guests' => [
+                                        'type' => 'array',
+                                        'items' => [
+                                            "type" => "object",
+                                            "properties" => [
+                                                'name' => [
+                                                    'type' => 'string',
+                                                    'example' => 'john',
+                                                ],
+                                                'surname' => [
+                                                    'type' => 'string',
+                                                    'example' => 'doe',
+                                                ],
+                                                'birthdate' => [
+                                                    'type' => 'datetime',
+                                                    'example' => '15-05-80',
+                                                ],
+                                                'gender' => [
+                                                    'type' => 'array',
+                                                    'example' => '["GENDER_MALE"]',
+                                                ],
+                                                'passportId' => [
+                                                    'type' => 'string',
+                                                    'example' => 'A12345678',
+                                                ],
+                                                'country' => [
+                                                    'type' => 'string',
+                                                    'example' => 'ES',
+                                                ],
+                                                'checkIn' => [
+                                                    'type' => 'Date',
+                                                    'example' => '16-07-2024 12:00',
+                                                ],
+                                                'checkOut' => [
+                                                    'type' => 'Date',
+                                                    'example' => '18-07-2024 14:00',
+                                                ],
+                                            ]
+                                        ],
+                                    ],
+
+                                ],
+                            ],
+                        ],
+                    ]),
+                )
             ),
             input: GuestMultipleRequest::class,
             name: 'multiple_guests'
