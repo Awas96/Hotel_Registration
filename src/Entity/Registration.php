@@ -18,7 +18,7 @@ class Registration
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $checkIn = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?string $checkOut = null;
 
 

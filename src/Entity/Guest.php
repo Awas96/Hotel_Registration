@@ -3,13 +3,24 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Repository\GuestRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use newrelic\DistributedTracePayload;
 
 #[ORM\Entity(repositoryClass: GuestRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new Post(),
+        new getCollection(),
+    ]
+)]
 class Guest
 {
     #[ORM\Id]
