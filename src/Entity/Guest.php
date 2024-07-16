@@ -38,39 +38,15 @@ use Symfony\Component\Validator\Constraints as Assert;
                                         'items' => [
                                             "type" => "object",
                                             "properties" => [
-                                                'name' => [
-                                                    'type' => 'string',
-                                                    'example' => 'john',
-                                                ],
-                                                'surname' => [
-                                                    'type' => 'string',
-                                                    'example' => 'doe',
-                                                ],
-                                                'birthdate' => [
-                                                    'type' => 'datetime',
-                                                    'example' => '15-05-80',
-                                                ],
-                                                'gender' => [
-                                                    'type' => 'array',
-                                                    'example' => '["GENDER_MALE"]',
-                                                ],
-                                                'passportId' => [
-                                                    'type' => 'string',
-                                                    'example' => 'A12345678',
-                                                ],
-                                                'country' => [
-                                                    'type' => 'string',
-                                                    'example' => 'ES',
-                                                ],
-                                                'checkIn' => [
-                                                    'type' => 'Date',
-                                                    'example' => '16-07-2024 12:00',
-                                                ],
-                                                'checkOut' => [
-                                                    'type' => 'Date',
-                                                    'example' => '18-07-2024 14:00',
-                                                ],
-                                            ]
+                                                'name' => ['type' => 'string','example' => 'john'],
+                                                'surname' => ['type' => 'string','example' => 'doe'],
+                                                'birthdate' => ['type' => 'datetime','example' => '15-05-80'],
+                                                'gender' => ['type' => 'array','example' => '["GENDER_MALE"]'],
+                                                'passportId' => ['type' => 'string','example' => 'A12345678'],
+                                                'country' => ['type' => 'string','example' => 'ES'],
+                                                'checkIn' => ['type' => 'Date','example' => '16-07-2024 12:00',],
+                                                'checkOut' => ['type' => 'Date', 'example' => '18-07-2024 14:00'],
+                                            ],
                                         ],
                                     ],
 
