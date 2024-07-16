@@ -2,16 +2,11 @@
 
 namespace App\Controller;
 
-use ApiPlatform\Symfony\Validator\Validator;
-use App\Dto\GuestMultipleRequest;
-use App\Entity\Guest;
 use App\Handler\GuestsValidationHandler;
-use Doctrine\ORM\EntityManagerInterface;
-use http\Client\Request;
-use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -31,18 +26,13 @@ class CreateMultipleGuestsController extends AbstractController
             name: "multiple_guests",
             methods: ["POST"],
         )]
-    public function __invoke(\Symfony\Component\HttpFoundation\Request $request, EntityManagerInterface $entityManager,GuestsValidationHandler $guestsValidationHandler): JsonResponse
+    public function __invoke(Request $request,GuestsValidationHandler $guestsValidationHandler): JsonResponse
     {
-        $guests = json_decode($request->getContent());
-        foreach ($guests as $newGuest) {
+        $dataCollection = json_decode($request->getContent());
+        $response = $guestsValidationHandler->handle($dataCollection);
+        dump(json_decode($response));
 
-            //checks a single guest
-            $guest = $guestsValidationHandler->handle($newGuest);
-            is_null($guest) ?: $entityManager->persist($guest);
 
-        }
-
-        $entityManager->flush();
         return $this->json("done");
     }
 

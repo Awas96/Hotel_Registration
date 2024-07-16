@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\RegistrationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Context;
@@ -31,12 +33,15 @@ class Registration
     #[Assert\Datetime]
     private ?\DateTimeInterface $checkOut = null;
 
-    #[ORM\ManyToOne(inversedBy: 'registrations')]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Guest $guest = null;
+    /**
+     * @var Collection<int, Guest>
+     */
+    #[ORM\ManyToMany(targetEntity: Guest::class, inversedBy: 'registrations')]
+    private Collection $guests;
 
     public function __construct()
     {
+        $this->guests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,14 +73,26 @@ class Registration
         return $this;
     }
 
-    public function getGuest(): ?Guest
+    /**
+     * @return Collection<int, Guest>
+     */
+    public function getGuests(): Collection
     {
-        return $this->guest;
+        return $this->guests;
     }
 
-    public function setGuest(?Guest $guest): static
+    public function addGuest(Guest $guest): static
     {
-        $this->guest = $guest;
+        if (!$this->guests->contains($guest)) {
+            $this->guests->add($guest);
+        }
+
+        return $this;
+    }
+
+    public function removeGuest(Guest $guest): static
+    {
+        $this->guests->removeElement($guest);
 
         return $this;
     }

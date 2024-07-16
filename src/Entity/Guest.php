@@ -75,12 +75,16 @@ class Guest
     /**
      * @var Collection<int, Registration>
      */
-    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'guest', orphanRemoval: true)]
-    private Collection $registrations;
 
-    #[ORM\ManyToOne(inversedBy: 'guests')]
+    #[ORM\ManyToOne(inversedBy: 'guests', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $registrar = null;
+
+    /**
+     * @var Collection<int, Registration>
+     */
+    #[ORM\ManyToMany(targetEntity: Registration::class, mappedBy: 'guests')]
+    private Collection $registrations;
 
     public function __construct()
     {
@@ -173,28 +177,6 @@ class Guest
         return $this->registrations;
     }
 
-    public function addRegistration(Registration $registration): static
-    {
-        if (!$this->registrations->contains($registration)) {
-            $this->registrations->add($registration);
-            $registration->setGuest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRegistration(Registration $registration): static
-    {
-        if ($this->registrations->removeElement($registration)) {
-            // set the owning side to null (unless already changed)
-            if ($registration->getGuest() === $this) {
-                $registration->setGuest(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getRegistrar(): ?user
     {
         return $this->registrar;
@@ -203,6 +185,25 @@ class Guest
     public function setRegistrar(?user $registrar): static
     {
         $this->registrar = $registrar;
+
+        return $this;
+    }
+
+    public function addRegistration(Registration $registration): static
+    {
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->addGuest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegistration(Registration $registration): static
+    {
+        if ($this->registrations->removeElement($registration)) {
+            $registration->removeGuest($this);
+        }
 
         return $this;
     }
