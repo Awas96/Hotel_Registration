@@ -22,13 +22,13 @@ class Registration
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Context([DateTimeNormalizer::FORMAT_KEY => 'd-m-Y H:i'])]
     #[Assert\NotBlank]
-    #[Assert\Date]
+    #[Assert\Datetime]
     private ?\DateTimeInterface $checkIn = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Context([DateTimeNormalizer::FORMAT_KEY => 'd-m-Y H:i'])]
     #[Assert\NotBlank]
-    #[Assert\Date]
+    #[Assert\Datetime]
     private ?\DateTimeInterface $checkOut = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]

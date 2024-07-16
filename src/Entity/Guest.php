@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\OpenApi\Model;
 use ApiPlatform\Metadata\Post;
+use App\Controller\CreateGuestsListController;
+use App\Controller\CreateMultipleGuestsController;
+use App\Dto\GuestMultipleRequest;
 use App\Repository\GuestRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,7 +23,18 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new Get(),
         new Post(),
-        new getCollection(),
+        new Post(
+            uriTemplate: '/guests/multiple',
+            controller: CreateMultipleGuestsController::class,
+            openapi: new Model\Operation(
+                summary: 'Create a list of guests',
+                description: 'Creates at once multiple guest entries, in a batch'
+            ),
+            input: GuestMultipleRequest::class,
+            name: 'multiple_guests'
+        ),
+
+
     ]
 )]
 class Guest
