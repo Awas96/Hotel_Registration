@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RegistrationRepository::class)]
+#[ApiResource()]
 class Registration
 {
     #[ORM\Id]
@@ -29,6 +30,10 @@ class Registration
     #[Assert\NotBlank]
     #[Assert\Date]
     private ?\DateTimeInterface $checkOut = null;
+
+    #[ORM\ManyToOne(inversedBy: 'registrations')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Guest $guest = null;
 
     public function __construct()
     {
@@ -59,6 +64,18 @@ class Registration
     public function setCheckOut(\DateTimeInterface $checkOut): static
     {
         $this->checkOut = $checkOut;
+
+        return $this;
+    }
+
+    public function getGuest(): ?Guest
+    {
+        return $this->guest;
+    }
+
+    public function setGuest(?Guest $guest): static
+    {
+        $this->guest = $guest;
 
         return $this;
     }

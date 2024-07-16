@@ -12,6 +12,8 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use App\State\UserPasswordHasher;
@@ -62,6 +64,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'json')]
     private array $roles = ["ROLE_USER"];
+
+    /**
+     * @var Collection<int, Guest>
+     */
+    #[ORM\OneToMany(targetEntity: Guest::class, mappedBy: 'registrar')]
+    private Collection $guests;
+
+    public function __construct()
+    {
+        $this->guests = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -142,5 +155,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Guest>
+     */
+    public function getGuests(): Collection
+    {
+        return $this->guests;
+    }
+
+    public function addGuest(Guest $guest): static
+    {
+        if (!$this->guests->contains($guest)) {
+            $this->guests->add($guest);
+            $guest->setRegistrar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGuest(Guest $guest): static
+    {
+        if ($this->guests->removeElement($guest)) {
+            // set the owning side to null (unless already changed)
+            if ($guest->getRegistrar() === $this) {
+                $guest->setRegistrar(null);
+            }
+        }
+
+        return $this;
     }
 }

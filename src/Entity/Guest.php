@@ -58,19 +58,19 @@ class Guest
     #[ORM\Column(length: 255)]
     private ?string $country = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
     /**
      * @var Collection<int, Registration>
      */
-    #[ORM\ManyToMany(targetEntity: Registration::class, cascade: ['persist', 'remove'])]
-    private Collection $registration;
+    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'guest', orphanRemoval: true)]
+    private Collection $registrations;
+
+    #[ORM\ManyToOne(inversedBy: 'guests')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $registrar = null;
 
     public function __construct()
     {
-        $this->registration = new ArrayCollection();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,30 +150,20 @@ class Guest
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Registration>
      */
-    public function getRegistration(): Collection
+    public function getRegistrations(): Collection
     {
-        return $this->registration;
+        return $this->registrations;
     }
 
     public function addRegistration(Registration $registration): static
     {
-        if (!$this->registration->contains($registration)) {
-            $this->registration->add($registration);
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->setGuest($this);
         }
 
         return $this;
@@ -181,7 +171,24 @@ class Guest
 
     public function removeRegistration(Registration $registration): static
     {
-        $this->registration->removeElement($registration);
+        if ($this->registrations->removeElement($registration)) {
+            // set the owning side to null (unless already changed)
+            if ($registration->getGuest() === $this) {
+                $registration->setGuest(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRegistrar(): ?user
+    {
+        return $this->registrar;
+    }
+
+    public function setRegistrar(?user $registrar): static
+    {
+        $this->registrar = $registrar;
 
         return $this;
     }
