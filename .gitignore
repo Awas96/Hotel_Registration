@@ -16,3 +16,8 @@
 /.idea/php.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+/config/jwt/
