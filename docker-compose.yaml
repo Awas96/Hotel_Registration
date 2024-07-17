@@ -38,6 +38,13 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - 8025:8025
+      - 1025:1025
 volumes:
   mysqldb-data:
 networks:

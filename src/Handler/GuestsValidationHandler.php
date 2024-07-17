@@ -5,6 +5,7 @@ namespace App\Handler;
 namespace App\Handler;
 
 use App\Entity\guest;
+use App\Handler\GuestsMailHandler;
 use App\Entity\Registration;
 use Doctrine\ORM\EntityManagerInterface;
 use mysql_xdevapi\Exception;
@@ -17,17 +18,20 @@ class GuestsValidationHandler
     private Security $security;
     private ValidatorInterface $validator;
     private EntityManagerInterface $entityManager;
+    private GuestsMailHandler $guestsMailHandler;
 
-    public function __construct(Security $security, ValidatorInterface $validator, EntityManagerInterface $entityManager)
+    public function __construct(Security $security, ValidatorInterface $validator, EntityManagerInterface $entityManager, GuestsMailHandler $guestsMailHandler)
     {
         $this->security = $security;
         $this->validator = $validator;
         $this->entityManager = $entityManager;
+        $this->guestsMailHandler = $guestsMailHandler;
     }
 
     public function handle(object $dataCollection): string
     {
         $errorCollector = [];
+        $registeredGuests =[];
 
         //Create registration initially to include it with every guest generated in bulk.
         try {
@@ -48,7 +52,7 @@ class GuestsValidationHandler
                 $registration->setCheckOut(new \DateTime(date("d-m-Y H:i", strtotime($data->checkOut))));
 
                 //Verify the data.
-                $errors =  $this->validator->validate($guest);
+                $errors = $this->validator->validate($guest);
                 foreach ($errors as $error) {
                     $errorCollector[] = (object)[$error->getPropertyPath(), $error->getMessage(), $error->getInvalidValue()];
                 }
@@ -58,12 +62,14 @@ class GuestsValidationHandler
                     $this->entityManager->persist($guest);
                     $registration->addGuest($guest);
                     $this->entityManager->persist($registration);
+                    $registeredGuests[] = (object)[$guest->__toString()];
                 }
             }
         } catch (Exception $e) {
             throw new exception($e->getMessage());
         }
-
+        dump($registeredGuests);
+        $this->guestsMailHandler->handle($registeredGuests);
         $this->entityManager->flush();
         return json_encode($errorCollector);
     }

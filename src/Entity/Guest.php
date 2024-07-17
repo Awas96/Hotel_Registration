@@ -10,6 +10,7 @@ use App\Controller\CreateGuestsListController;
 use App\Controller\CreateMultipleGuestsController;
 use App\Dto\GuestMultipleRequest;
 use App\Repository\GuestRepository;
+use App\State\GuestListMailProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -27,6 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             openapi: new Model\Operation(
                 summary: 'Create a list of guests',
                 description: 'Creates at once multiple guest entries, in a batch',
+
                 requestBody: new Model\RequestBody(
                     content: new \ArrayObject([
                         'application/json' => [
@@ -56,8 +58,7 @@ use Symfony\Component\Validator\Constraints as Assert;
                     ]),
                 )
             ),
-            input: GuestMultipleRequest::class,
-            name: 'multiple_guests'
+            name: 'multiple_guests',
         ),
 
 
@@ -234,4 +235,8 @@ class Guest
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->name . ' ' . $this->surname;
+    }
 }
