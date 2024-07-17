@@ -1,92 +1,706 @@
-# Hotel_Registration
-Symfony Assignment
-Objective: Create an application that allows users to register guests at a hotel.
-﻿
-You will have 48 hours to complete this assignment.
-﻿
-Application Components:
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Installation Instructions for Hotel Registration</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
 
-Database: Store information of users allowed to use the API services.
+html,
+body {
+margin: 0;
+padding: 0;
+}
+@media only screen {
+body {
+margin: 2em auto;
+max-width: 900px;
+color: rgb(55, 53, 47);
+}
+}
 
-    REST API: Provide endpoints for user and guest management.
+body {
+line-height: 1.5;
+white-space: pre-wrap;
+}
 
-﻿
-Guest Attributes:
+a,
+a.visited {
+color: inherit;
+text-decoration: underline;
+}
 
-Name
-Surname
-Date of Birth
-Gender (M/F/X)
-Passport Number
-Country
-User ID who registered the guest
+.pdf-relative-link-path {
+font-size: 80%;
+color: #444;
+}
 
-    Registration ID
+h1,
+h2,
+h3 {
+letter-spacing: -0.01em;
+line-height: 1.2;
+font-weight: 600;
+margin-bottom: 0;
+}
 
-﻿
-Registration Details:
+.page-title {
+font-size: 2.5rem;
+font-weight: 700;
+margin-top: 0;
+margin-bottom: 0.75em;
+}
 
-List of guests
-Check-in Date
+h1 {
+font-size: 1.875rem;
+margin-top: 1.875rem;
+}
 
-    Check-out Date
+h2 {
+font-size: 1.5rem;
+margin-top: 1.5rem;
+}
 
-Guest Registration Process (using REST API endpoints):
+h3 {
+font-size: 1.25rem;
+margin-top: 1.25rem;
+}
 
-User Login: Users login using an email and password.
-Submit Guests: Users submit a list of guests with check-in and check-out dates.
+.source {
+border: 1px solid #ddd;
+border-radius: 3px;
+padding: 1.5em;
+word-break: break-all;
+}
 
-    Validation: Immediate feedback is provided based on validation rules.
+.callout {
+border-radius: 3px;
+padding: 1rem;
+}
 
-﻿
-Notes:
+figure {
+margin: 1.25em 0;
+page-break-inside: avoid;
+}
 
-Data must be contextually validated for hotel guest registration.
+figcaption {
+opacity: 0.5;
+font-size: 85%;
+margin-top: 0.5em;
+}
 
-    No frontend implementation is required, it is a REST API service so you must focus on the development of a solid API
+mark {
+background-color: transparent;
+}
 
-Extra Features:
+.indented {
+padding-left: 1.5em;
+}
 
-Email Notification: Implement an email system to notify users when a list of guests is submitted.
-Rate Limiting: To prevent abuse, implement rate limiting on the API that limits submissions to a maximum of 5 per minute.
-Webhook: Implement a webhook that, on every submission, sends the data to the following URL (https://webhook.site/e517553c-6fcb-4ade-9524-208e2d6c4068
+hr {
+background: transparent;
+display: block;
+width: 100%;
+height: 1px;
+visibility: visible;
+border: none;
+border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
 
-    )
+img {
+max-width: 100%;
+}
 
-Technical Requirements:
+@media only print {
+img {
+max-height: 100vh;
+object-fit: contain;
+}
+}
 
-Symfony (latest version)
-MySQL
+@page {
+margin: 1in;
+}
 
-    Platform API
+.collection-content {
+font-size: 0.875rem;
+}
 
-Deliverables:
+.column-list {
+display: flex;
+justify-content: space-between;
+}
 
-GitHub Repository: Create a repository and provide access to
-a.bonumore@emergento.com
-.
-Installation Instructions: Clear, step-by-step guide on how to install the application.
+.column {
+padding: 0 1em;
+}
 
-    Demonstration Video: A video demonstrating a client performing the guest registration process.
+.column:first-child {
+padding-left: 0;
+}
 
-Evaluation Criteria:
+.column:last-child {
+padding-right: 0;
+}
 
-Quality of Code: Ensure the implementation is basic yet well-structured.
-Documentation: Provide comprehensive and clear documentation for easy verification in a local environment.
+.table_of_contents-item {
+display: block;
+font-size: 0.875rem;
+line-height: 1.3;
+padding: 0.125rem;
+}
 
-    Punctuality: Adhere to deadlines strictly; delays will not be tolerated.
+.table_of_contents-indent-1 {
+margin-left: 1.5rem;
+}
 
-Additional Instructions:
+.table_of_contents-indent-2 {
+margin-left: 3rem;
+}
 
-Code Quality: Ensure the code respects SOLID principles.
-Security: Implement security best practices for user authentication and data handling.
+.table_of_contents-indent-3 {
+margin-left: 4.5rem;
+}
 
-    API Documentation: Use tools like Swagger to document the API endpoints.
+.table_of_contents-link {
+text-decoration: none;
+opacity: 0.7;
+border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
 
-﻿
-﻿
-Once you complete the assignment, please send an email to
-a.bonumore@emergento.com
-.
-﻿
+table,
+th,
+td {
+border: 1px solid rgba(55, 53, 47, 0.09);
+border-collapse: collapse;
+}
 
+table {
+border-left: none;
+border-right: none;
+}
+
+th,
+td {
+font-weight: normal;
+padding: 0.25em 0.5em;
+line-height: 1.5;
+min-height: 1.5em;
+text-align: left;
+}
+
+th {
+color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+margin: 0;
+margin-block-start: 0.6em;
+margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+margin-block-start: 0.6em;
+}
+
+ul > li {
+list-style: disc;
+}
+
+ul.to-do-list {
+padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+list-style: none;
+}
+
+.to-do-children-checked {
+text-decoration: line-through;
+opacity: 0.375;
+}
+
+ul.toggle > li {
+list-style: none;
+}
+
+ul {
+padding-inline-start: 1.7em;
+}
+
+ul > li {
+padding-left: 0.1em;
+}
+
+ol {
+padding-inline-start: 1.6em;
+}
+
+ol > li {
+padding-left: 0.2em;
+}
+
+.mono ol {
+padding-inline-start: 2em;
+}
+
+.mono ol > li {
+text-indent: -0.4em;
+}
+
+.toggle {
+padding-inline-start: 0em;
+list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+margin-left: -1.1em;
+}
+
+.selected-value {
+display: inline-block;
+padding: 0 0.5em;
+background: rgba(206, 205, 202, 0.5);
+border-radius: 3px;
+margin-right: 0.5em;
+margin-top: 0.3em;
+margin-bottom: 0.3em;
+white-space: nowrap;
+}
+
+.collection-title {
+display: inline-block;
+margin-right: 1em;
+}
+
+.page-description {
+margin-bottom: 2em;
+}
+
+.simple-table {
+margin-top: 1em;
+font-size: 0.875rem;
+empty-cells: show;
+}
+.simple-table td {
+height: 29px;
+min-width: 120px;
+}
+
+.simple-table th {
+height: 29px;
+min-width: 120px;
+}
+
+.simple-table-header-color {
+background: rgb(247, 246, 243);
+color: black;
+}
+.simple-table-header {
+font-weight: 500;
+}
+
+time {
+opacity: 0.5;
+}
+
+.icon {
+display: inline-block;
+max-width: 1.2em;
+max-height: 1.2em;
+text-decoration: none;
+vertical-align: text-bottom;
+margin-right: 0.5em;
+}
+
+img.icon {
+border-radius: 3px;
+}
+
+.user-icon {
+width: 1.5em;
+height: 1.5em;
+border-radius: 100%;
+margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+font-size: 0.8em;
+}
+
+.text-icon {
+border: 1px solid #000;
+text-align: center;
+}
+
+.page-cover-image {
+display: block;
+object-fit: cover;
+width: 100%;
+max-height: 30vh;
+}
+
+.page-header-icon {
+font-size: 3rem;
+margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+margin-top: -0.72em;
+margin-left: 0.07em;
+}
+
+.page-header-icon img {
+border-radius: 3px;
+}
+
+.link-to-page {
+margin: 1em 0;
+padding: 0;
+border: none;
+font-weight: 500;
+}
+
+p > .user {
+opacity: 0.5;
+}
+
+td > .user,
+td > time {
+white-space: nowrap;
+}
+
+input[type="checkbox"] {
+transform: scale(1.5);
+margin-right: 0.6em;
+vertical-align: middle;
+}
+
+p {
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+}
+
+.image {
+border: none;
+margin: 1.5em 0;
+padding: 0;
+border-radius: 0;
+text-align: center;
+}
+
+.code,
+code {
+background: rgba(135, 131, 120, 0.15);
+border-radius: 3px;
+padding: 0.2em 0.4em;
+border-radius: 3px;
+font-size: 85%;
+tab-size: 2;
+}
+
+code {
+color: #eb5757;
+}
+
+.code {
+padding: 1.5em 1em;
+}
+
+.code-wrap {
+white-space: pre-wrap;
+word-break: break-all;
+}
+
+.code > code {
+background: none;
+padding: 0;
+font-size: 100%;
+color: inherit;
+}
+
+blockquote {
+font-size: 1.25em;
+margin: 1em 0;
+padding-left: 1em;
+border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+text-decoration: none;
+max-height: 8em;
+padding: 0;
+display: flex;
+width: 100%;
+align-items: stretch;
+}
+
+.bookmark-title {
+font-size: 0.85em;
+overflow: hidden;
+text-overflow: ellipsis;
+height: 1.75em;
+white-space: nowrap;
+}
+
+.bookmark-text {
+display: flex;
+flex-direction: column;
+}
+
+.bookmark-info {
+flex: 4 1 180px;
+padding: 12px 14px 14px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.bookmark-image {
+width: 33%;
+flex: 1 1 180px;
+display: block;
+position: relative;
+object-fit: cover;
+border-radius: 1px;
+}
+
+.bookmark-description {
+color: rgba(55, 53, 47, 0.6);
+font-size: 0.75em;
+overflow: hidden;
+max-height: 4.5em;
+word-break: break-word;
+}
+
+.bookmark-href {
+font-size: 0.75em;
+margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+color: rgba(120, 119, 116, 1);
+fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+color: rgba(159, 107, 83, 1);
+fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+color: rgba(217, 115, 13, 1);
+fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+color: rgba(203, 145, 47, 1);
+fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+color: rgba(68, 131, 97, 1);
+fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+color: rgba(51, 126, 169, 1);
+fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+color: rgba(144, 101, 176, 1);
+fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+color: rgba(193, 76, 138, 1);
+fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+color: rgba(212, 76, 71, 1);
+fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+color: inherit;
+fill: inherit;
+}
+.block-color-gray {
+color: rgba(120, 119, 116, 1);
+fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+color: rgba(159, 107, 83, 1);
+fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+color: rgba(217, 115, 13, 1);
+fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+color: rgba(203, 145, 47, 1);
+fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+color: rgba(68, 131, 97, 1);
+fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+color: rgba(51, 126, 169, 1);
+fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+color: rgba(144, 101, 176, 1);
+fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+color: rgba(193, 76, 138, 1);
+fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+color: rgba(212, 76, 71, 1);
+fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+display: inline-flex;
+vertical-align: text-bottom;
+width: 16;
+height: 16;
+background-size: 16px;
+margin-left: 2px;
+margin-right: 5px;
+}
+
+.checkbox-on {
+background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+</style></head><body><article id="a4d250ed-b3d4-4c87-a9ba-35549b309c53" class="page sans"><header><h1 class="page-title">Installation Instructions for Hotel Registration</h1><p class="page-description"></p></header><div class="page-body"><p id="b54da5be-d036-489f-8046-35d320ea3a3f" class="">Prerequisites</p><ol type="1" id="f27645f0-301b-4652-aabc-2b0eece1da87" class="numbered-list" start="1"><li><strong>PHP</strong>: Ensure you have PHP installed on your machine I have been requested to utilize the latest version available, which is 8.3.9.. You can download it from <a href="https://www.php.net/">PHP official website</a>.</li></ol><ol type="1" id="358d9530-4464-40b6-88ad-7ccddf741f26" class="numbered-list" start="2"><li><strong>Composer</strong>: Ensure you have Composer installed. You can download it from <a href="https://getcomposer.org/">Composer official website</a>.</li></ol><ol type="1" id="0aad2a77-331d-4c51-bc56-1fe3ff1914d7" class="numbered-list" start="3"><li><strong>Git</strong>: Ensure you have Git installed. You can download it from <a href="https://git-scm.com/">Git official website</a>.</li></ol><ol type="1" id="d3d7fe13-ea38-4890-bd92-3c11550a4a85" class="numbered-list" start="4"><li><strong>Docker</strong>: Ensure you have Docker and Docker Compose installed. You can download them from <a href="https://www.docker.com/">Docker official website</a>.</li></ol><h3 id="734be3bb-c42e-435a-9094-820730eb0318" class="">Step-by-Step Installation Guide</h3><ol type="1" id="deb5d2bc-16af-43e1-91c4-8f2b91372827" class="numbered-list" start="1"><li><strong>Clone the Repository</strong><br/>Open your terminal and run the following command to clone the repository:<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7edfc0ea-af78-4215-b528-fee2a116e18e" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">git clone https://github.com/Awas96/Hotel_Registration.git
+</code></pre></li></ol><ol type="1" id="6f03df99-2ac8-4bf6-982a-412fb843e99a" class="numbered-list" start="2"><li><strong>Navigate to the Project Directory</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="260eab7d-e3b6-4b08-9957-0b1630652b5c" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">cd Hotel_Registration
+</code></pre></li></ol><ol type="1" id="9b289eed-323b-43fe-b54b-e2c378192a51" class="numbered-list" start="3"><li><strong>Set Up Environment Variables</strong><br/>Create a .env.local file in the main project directory and input your environment variables. While you can refer to the original .env file for guidance, i have ensured to include the a copy with the required  lines in this file.<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="271c3077-41d5-4fec-ac4e-a6bc0f7b9f9b" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">APP_ENV=dev
+APP_SECRET=3292d6aac1b68599be0f0d621b3f326f
+DATABASE_URL=&quot;mysql://symfony:symfony@mysqldb:3306/hotel_database?serverVersion=9.0&quot;
+CORS_ALLOW_ORIGIN=&#x27;^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$&#x27;
+MAILER_URL=&quot;smtp://mailhog:1025?encryption=ssl&amp;auth_mode=login&amp;username=null&amp;password=null&quot;
+MAILER_DSN=smtp://mailhog:1025
+WEBHOOK_URL=&quot;https://webhook.site/e517553c-6fcb-4ade-9524-208e2d6c4068&quot;</code></pre></li></ol><ol type="1" id="89de6895-f276-4f11-8e2a-08b7302610f1" class="numbered-list" start="4"><li><strong>Install Dependencies</strong><br/>Run the following command to install all necessary dependencies:<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0f967370-a5f2-4fa7-9fd3-fdb44d02a896" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">composer install
+</code></pre></li></ol><ol type="1" id="00a5b92c-071b-48ed-ae75-4970817fceb9" class="numbered-list" start="5"><li><strong>Start Docker Containers</strong><br/>Start the Docker containers defined in the <br/><code>docker-compose.yml</code> file:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a1cfea51-5c6b-41dc-ba53-7856ef0833a8" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">docker compose up -d
+</code></pre></li></ol><ol type="1" id="e07f8d7a-d8c7-4102-9f79-0b887ff7459e" class="numbered-list" start="6"><li><strong>Generate SSL Keys for JWT Authentication</strong><br/>Generate the private and public keys for JWT authentication:<br/><p id="e7d02416-73f4-45ca-8c52-31f78ef80835" class="">Note that the <code>setfacl</code> command relies on the <code>acl</code>  This is installed by default when using the API Platform docker distribution but may need to be installed in your working environment in order to execute the <code>setfacl</code> command..</p><p id="f09b9f72-e623-4ced-bd1c-3d7b8ee1e923" class="">In case the nginx container encounters an error, it is possible that there is a problem with the permissions on the fold.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="84904b82-c9a8-4e49-90fb-7c6e0ddb46ff" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">docker exec -it hotel_registration_php sh        -c &#x27;
+apk add openssl
+mkdir var/cert/
+cd var/cert/
+echo &quot;your_secure_password&quot; &gt; global.pass
+openssl genpkey -algorithm RSA -out server.key -aes256 -pass file:global.pass -pkeyopt rsa_keygen_bits:2048
+openssl req -new -key server.key -out server.csr -passin file:global.pass
+openssl rsa -in server.key -out server.key -passin file:global.pass
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt -passin file:global.pass
+cd ../../
+php bin/console lexik:jwt:generate-keypair
+setfacl -R -m u:www-data:rX -m u:&quot;$(whoami)&quot;:rwX config/jwt
+setfacl -dR -m u:www-data:rX -m u:&quot;$(whoami)&quot;:rwX config/jwt
+&#x27;
+</code></pre></li></ol><ol type="1" id="4b5a6d12-e42e-4d49-97c1-af14d6b842a4" class="numbered-list" start="7"><li><strong>Create Database</strong><br/>Execute the command below to generate the schema since the database has already been created by the docker compose component.<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="34dd1b94-e2b5-4b54-a60b-b3d8f45a5300" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">
+docker compose exec php bin/console doctrine:schema:update --force
+</code></pre><p id="49a6d93b-7f29-4a4f-a348-fe7f0895334e" class="">
+</p><p id="6a2b9413-f802-4de9-b456-82a7e7021ae1" class="">Restart the docker compose to refresh nginx with the updated certificate.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="376e1543-2c97-4644-8d3f-b37c3a7ed33a" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">docker compose up -d
+</code></pre></li></ol><p id="407002c1-6e20-41ae-b911-5702857fc901" class=""> At this time, you should have a functiona hotel_registration instance on your machine and prepared to begin working with it.</p><p id="b985c869-6f5d-4e7b-a734-e927e30ca2f9" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
