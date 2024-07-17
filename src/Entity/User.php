@@ -26,6 +26,7 @@ use Symfony\Component\Validator\Constraints\PasswordStrength;
 
 #[ApiResource(
     operations: [
+        new Delete(),
         new Post(validationContext: ['groups' => ['Default', 'user:create']], processor: UserPasswordHasher::class),
     ],
     normalizationContext: ['groups' => ['user:read']],

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\OpenApi\Model;
 use ApiPlatform\Metadata\Post;
 use App\Controller\CreateGuestsListController;
@@ -22,6 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: GuestRepository::class)]
 #[ApiResource(
     operations: [
+        new getCollection(),
         new Post(
             uriTemplate: '/guests/multiple',
             controller: CreateMultipleGuestsController::class,
