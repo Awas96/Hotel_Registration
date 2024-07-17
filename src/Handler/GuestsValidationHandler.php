@@ -62,13 +62,12 @@ class GuestsValidationHandler
                     $this->entityManager->persist($guest);
                     $registration->addGuest($guest);
                     $this->entityManager->persist($registration);
-                    $registeredGuests[] = (object)[$guest->__toString()];
+                    $registeredGuests[] = [$guest->getName(),$guest->getSurname(), date("d-m-Y H:i", strtotime($data->checkIn)), date("d-m-Y H:i", strtotime($data->checkOut))];
                 }
             }
         } catch (Exception $e) {
             throw new exception($e->getMessage());
         }
-        dump($registeredGuests);
         $this->guestsMailHandler->handle($registeredGuests);
         $this->entityManager->flush();
         return json_encode($errorCollector);

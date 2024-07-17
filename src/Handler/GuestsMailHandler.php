@@ -30,11 +30,17 @@ class GuestsMailHandler
 
     public function handle($guestList): void
     {
+        $list = "<ul>";
+        foreach ($guestList as $guest) {
+            $list .= sprintf("<li>%s %s - From: %s Until: %s  </li>", $guest[0], $guest[1], $guest[2], $guest[3]);
+        }
+        $list .= "</ul>";
+
         $email = (new Email())
             ->from('hotel_staff@gmail.com')
             ->to($this->security->getUser()->getEmail())
             ->subject('New list of Guests')
-            ->text("the new guests are as follows: " . json_encode($guestList));
+            ->html("the new guests are as follows: " . $list);
 
         $this->mailer->send(($email));
     }
