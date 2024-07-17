@@ -19,13 +19,15 @@ class GuestsValidationHandler
     private ValidatorInterface $validator;
     private EntityManagerInterface $entityManager;
     private GuestsMailHandler $guestsMailHandler;
+    private CustomWebhookHandler $customWebhookHandler;
 
-    public function __construct(Security $security, ValidatorInterface $validator, EntityManagerInterface $entityManager, GuestsMailHandler $guestsMailHandler)
+    public function __construct(Security $security, ValidatorInterface $validator, EntityManagerInterface $entityManager, GuestsMailHandler $guestsMailHandler, CustomWebhookHandler $customWebhookHandler)
     {
         $this->security = $security;
         $this->validator = $validator;
         $this->entityManager = $entityManager;
         $this->guestsMailHandler = $guestsMailHandler;
+        $this->customWebhookHandler = $customWebhookHandler;
     }
 
     public function handle(object $dataCollection): string
@@ -69,6 +71,7 @@ class GuestsValidationHandler
             throw new exception($e->getMessage());
         }
         $this->guestsMailHandler->handle($registeredGuests);
+        $this->customWebhookHandler->handle(json_encode((object)$registeredGuests));
         $this->entityManager->flush();
         return json_encode($errorCollector);
     }
